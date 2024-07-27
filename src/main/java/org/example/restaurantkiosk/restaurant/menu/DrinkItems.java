@@ -11,10 +11,11 @@ public class DrinkItems {
         drinks.add(drink);
     }
 
+    public boolean contains(String name) {
+        return drinks.stream().anyMatch(drink -> drink.getName().equals(name));
+    }
+
     public void displayDrinks() {
-        System.out.println("\n<음료>");
-        for (Drink drink : drinks) {
-            System.out.println(drink);
-        }
+        drinks.forEach(System.out::println);
     }
 }

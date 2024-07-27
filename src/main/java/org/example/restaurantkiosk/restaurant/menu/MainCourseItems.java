@@ -11,10 +11,11 @@ public class MainCourseItems {
         mainCourses.add(mainCourse);
     }
 
-    public void displayMainCourses() {
-        System.out.println("\n<메인>");
-        for (MainCourse mainCourse : mainCourses) {
-            System.out.println(mainCourse);
-        }
+    public boolean contains(String name) {
+        return mainCourses.stream().anyMatch(mainCourse -> mainCourse.getName().equals(name));
+    }
+
+    public void displayAppetizers() {
+        mainCourses.forEach(System.out::println);
     }
 }

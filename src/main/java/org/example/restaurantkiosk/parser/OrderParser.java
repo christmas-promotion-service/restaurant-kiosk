@@ -14,7 +14,7 @@ public class OrderParser {
     }
 
     public Order parseOrder(String input) {
-        Order order = new Order();
+        Order order = new Order(menuItems);
 
         Arrays.stream(input.split(","))
                 .map(this::splitItem)

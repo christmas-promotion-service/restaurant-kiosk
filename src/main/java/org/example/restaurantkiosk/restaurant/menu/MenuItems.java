@@ -14,6 +14,10 @@ public class MenuItems {
         return items.stream().anyMatch(item -> item.getName().equals(name));
     }
 
+    public boolean isDrink(String name) {
+        return items.stream().anyMatch(menu -> menu instanceof Drink && menu.getName().equals(name));
+    }
+
     public void displayItems() {
         items.forEach(System.out::println);
     }
