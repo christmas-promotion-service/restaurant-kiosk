@@ -2,7 +2,7 @@ package org.example.restaurantkiosk.io;
 
 public interface OutputHandler {
 
-    void askReservationDateComments();
+    void askReservationDayComments();
     void askMenuAndAmountComments();
     void benifitPreviewHeader(int day);
 }
