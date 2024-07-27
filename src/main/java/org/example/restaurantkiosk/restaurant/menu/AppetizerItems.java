@@ -11,10 +11,11 @@ public class AppetizerItems {
         appetizers.add(appetizer);
     }
 
+    public boolean contains(String name) {
+        return appetizers.stream().anyMatch(appetizer -> appetizer.getName().equals(name));
+    }
+
     public void displayAppetizers() {
-        System.out.println("<애피타이저>");
-        for (Appetizer appetizer : appetizers) {
-            System.out.println(appetizer);
-        }
+        appetizers.forEach(System.out::println);
     }
 }

@@ -10,10 +10,11 @@ public class DessertItems {
         desserts.add(dessert);
     }
 
-    public void displayDesserts() {
-        System.out.println("\n<디저트>");
-        for (Dessert dessert : desserts) {
-            System.out.println(dessert);
-        }
+    public boolean contains(String name) {
+        return desserts.stream().anyMatch(dessert -> dessert.getName().equals(name));
+    }
+
+    public void displayAppetizers() {
+        desserts.forEach(System.out::println);
     }
 }

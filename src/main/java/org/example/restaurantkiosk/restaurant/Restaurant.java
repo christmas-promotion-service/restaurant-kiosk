@@ -1,5 +1,6 @@
 package org.example.restaurantkiosk.restaurant;
 
+import org.example.restaurantkiosk.User;
 import org.example.restaurantkiosk.config.ServiceConfig;
 import org.example.restaurantkiosk.io.InputHandler;
 import org.example.restaurantkiosk.io.OutputHandler;
@@ -14,6 +15,9 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
 
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
+    private ServiceStatus serviceStatus;
+
+    private User user;
 
     public Restaurant(ServiceConfig serviceConfig) {
         this.inputHandler = serviceConfig.getInputHandler();
@@ -22,7 +26,13 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
 
     @Override
     public void initialize() {
-        // 필요 데이터 세팅
+        // 서비스 상태 on
+        initializeServiceStatus();
+        // 메뉴 데이터 세팅
+//        initializeMenuItems();
+    }
+
+    private void initializeMenuItems() {
         initializeAppetizers();
         initializeMainCourses();
         initializeDesserts();
@@ -31,7 +41,16 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
 
     @Override
     public void run() {
-        outputHandler.askReservationDateComments();
+        outputHandler.askReservationDayComments();
+        int reservationDay = inputHandler.getReservationDayFromUser();
+
+        outputHandler.askMenuAndAmountComments();
+        inputHandler.getOrderMenuFromUser();
+        // User에 받아온 값을 토대로 생성자 만들기
+    }
+
+    private void initializeServiceStatus() {
+        serviceStatus = ServiceStatus.IN_PROGRESS;
     }
 
     private void initializeDrinks() {
@@ -56,6 +75,10 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
         appetizerItems.addAppetizer(new Appetizer("양송이수프", 6000));
         appetizerItems.addAppetizer(new Appetizer("타파스", 5500));
         appetizerItems.addAppetizer(new Appetizer("시저샐러드", 8000));
+    }
+
+    private boolean isInProgress() {
+        return serviceStatus == ServiceStatus.IN_PROGRESS;
     }
 
 }
