@@ -15,7 +15,7 @@ public class ReservationDayHandler {
                     return reservationDay;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("잘못된 입력입니다. 날짜는 숫자여야 합니다.");
+                System.out.println("[ERROR] 잘못된 입력입니다. 날짜는 숫자로 입력해주세요.");
             } catch (ServiceException e) {
                 System.out.println(e.getMessage());
             }
@@ -27,7 +27,7 @@ public class ReservationDayHandler {
         if (reservationDay >= 1 && reservationDay <= 31) {
             return true;
         } else {
-            throw new ServiceException("잘못된 입력입니다. 날짜는 1~31 사이의 숫자여야 합니다.");
+            throw new ServiceException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
 }
