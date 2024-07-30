@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
-    private final Map<String, Integer> items = new HashMap<>();
+    private final Map<String, Integer> orderItems = new HashMap<>();
     private final MenuItems menuItems;
 
     public Order(MenuItems menuItems) {
@@ -15,19 +15,19 @@ public class Order {
     }
 
     public void addItem(String name, int quantity) {
-        items.put(name, quantity);
+        orderItems.put(name, quantity);
     }
 
-    public Map<String, Integer> getItems() {
-        return new HashMap<>(items);
+    public Map<String, Integer> getOrderItems() {
+        return new HashMap<>(orderItems);
     }
 
     public int getTotalQuantity() {
-        return items.values().stream().mapToInt(Integer::intValue).sum();
+        return orderItems.values().stream().mapToInt(Integer::intValue).sum();
     }
 
     public boolean containsOnlyDrinks() {
-        return items.keySet().stream().allMatch(menuItems::isDrink); // "콜라"가 음료의 대표적인 예라고 가정
+        return orderItems.keySet().stream().allMatch(menuItems::isDrink); // "콜라"가 음료의 대표적인 예라고 가정
     }
 
     // 수량 또는 주문 관련 정책에 대한 예외 처리는 여기서 담당
@@ -38,5 +38,11 @@ public class Order {
         if (containsOnlyDrinks()) {
             throw new ServiceException("음료만 주문할 수 없습니다.");
         }
+    }
+
+    public int calculateTotalPrice() {
+        return orderItems.entrySet().stream()
+                .mapToInt(entry -> menuItems.getPrice(entry.getKey()) * entry.getValue())
+                .sum();
     }
 }
