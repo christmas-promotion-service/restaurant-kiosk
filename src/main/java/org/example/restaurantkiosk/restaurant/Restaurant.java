@@ -1,5 +1,6 @@
 package org.example.restaurantkiosk.restaurant;
 
+import org.example.restaurantkiosk.Order;
 import org.example.restaurantkiosk.User;
 import org.example.restaurantkiosk.config.ServiceConfig;
 import org.example.restaurantkiosk.io.InputHandler;
@@ -45,8 +46,13 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
         int reservationDay = inputHandler.getReservationDayFromUser();
 
         outputHandler.askMenuAndAmountComments();
-        inputHandler.getOrderMenuFromUser();
+        Order order = inputHandler.getOrderMenuFromUser();
         // User에 받아온 값을 토대로 생성자 만들기
+        User user = new User(reservationDay, order);
+
+        int totalPrice = order.calculateTotalPrice();
+        outputHandler.benifitPreviewComments(reservationDay, user.getOrderItems(), totalPrice);
+
     }
 
     private void initializeServiceStatus() {

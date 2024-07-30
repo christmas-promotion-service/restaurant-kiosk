@@ -1,5 +1,8 @@
 package org.example.restaurantkiosk.io;
 
+import java.text.NumberFormat;
+import java.util.Map;
+
 public class ConsoleOutputHandler implements OutputHandler {
 
     @Override
@@ -14,7 +17,18 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     @Override
-    public void benifitPreviewHeader(int day) {
+    public void benifitPreviewComments(int reservationDay, Map<String, Integer> orderItems, int totalPriceBeforeDiscount) {
+        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!%n", reservationDay);
+        System.out.println();
 
+        System.out.println("<주문 메뉴>");
+        orderItems.entrySet().stream()
+                .forEach(entry -> System.out.printf("%s %d개%n", entry.getKey(), entry.getValue()));
+        System.out.println();
+
+        System.out.println("<할인 전 총주문 금액>");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String formattedPrice = numberFormat.format(totalPriceBeforeDiscount);
+        System.out.printf("%s원%n", formattedPrice);
     }
 }

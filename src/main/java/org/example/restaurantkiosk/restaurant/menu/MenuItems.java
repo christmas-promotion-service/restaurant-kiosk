@@ -21,4 +21,12 @@ public class MenuItems {
     public void displayItems() {
         items.forEach(System.out::println);
     }
+
+    public int getPrice(String name) {
+        return items.stream()
+                .filter(item -> item.getName().equals(name))
+                .map(Menu::getPrice)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 메뉴를 찾을 수 없습니다: " + name));
+    }
 }
