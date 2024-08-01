@@ -1,6 +1,6 @@
 package org.example.restaurantkiosk;
 
-import org.example.restaurantkiosk.exception.ServiceException;
+import org.example.restaurantkiosk.exception.CustomException;
 import org.example.restaurantkiosk.restaurant.menu.MenuItems;
 
 import java.util.HashMap;
@@ -33,10 +33,10 @@ public class Order {
     // 수량 또는 주문 관련 정책에 대한 예외 처리는 여기서 담당
     public void validate() {
         if (getTotalQuantity() > 20) {
-            throw new ServiceException("한 번에 최대 20개까지만 주문할 수 있습니다.");
+            throw new CustomException("한 번에 최대 20개까지만 주문할 수 있습니다.");
         }
         if (containsOnlyDrinks()) {
-            throw new ServiceException("음료만 주문할 수 없습니다.");
+            throw new CustomException("음료만 주문할 수 없습니다.");
         }
     }
 
