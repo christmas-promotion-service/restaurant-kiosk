@@ -1,6 +1,6 @@
 package org.example.restaurantkiosk.io;
 
-import org.example.restaurantkiosk.exception.ServiceException;
+import org.example.restaurantkiosk.exception.CustomException;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class ReservationDayHandler {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 잘못된 입력입니다. 날짜는 숫자로 입력해주세요.");
-            } catch (ServiceException e) {
+            } catch (CustomException e) {
                 System.out.println(e.getMessage());
             }
             input = scanner.nextLine();
@@ -27,7 +27,7 @@ public class ReservationDayHandler {
         if (reservationDay >= 1 && reservationDay <= 31) {
             return true;
         } else {
-            throw new ServiceException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new CustomException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
 }
