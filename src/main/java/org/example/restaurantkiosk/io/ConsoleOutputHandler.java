@@ -30,5 +30,16 @@ public class ConsoleOutputHandler implements OutputHandler {
         NumberFormat numberFormat = NumberFormat.getInstance();
         String formattedPrice = numberFormat.format(totalPriceBeforeDiscount);
         System.out.printf("%s원%n", formattedPrice);
+
+
+
     }
+
+    @Override
+    public void showGiveawayComments(String giveaway) {
+        System.out.println("<증정 메뉴>");
+        System.out.println(giveaway);
+    }
+
+
 }

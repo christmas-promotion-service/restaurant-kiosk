@@ -1,12 +1,14 @@
 package org.example.restaurantkiosk.restaurant;
 
-import org.example.restaurantkiosk.Order;
 import org.example.restaurantkiosk.User;
 import org.example.restaurantkiosk.config.ServiceConfig;
 import org.example.restaurantkiosk.exception.CustomException;
 import org.example.restaurantkiosk.io.InputHandler;
 import org.example.restaurantkiosk.io.OutputHandler;
-import org.example.restaurantkiosk.restaurant.menu.*;
+import org.example.restaurantkiosk.order.Giveaway;
+import org.example.restaurantkiosk.order.Order;
+import org.example.restaurantkiosk.restaurant.menu.MenuInitializer;
+import org.example.restaurantkiosk.restaurant.menu.MenuItems;
 
 public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
     private final InputHandler inputHandler;
@@ -48,6 +50,13 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
 
             int totalPrice = order.calculateTotalPrice();
             outputHandler.benifitPreviewComments(reservationDay, user.getOrderItems(), totalPrice);
+
+            String giveaway = "없음";
+            if (order.isGiveawayAddable()) {
+                giveaway = Giveaway.CHAMPAGNE.toString();
+            }
+            outputHandler.showGiveawayComments(giveaway);
+
         } catch (CustomException e) {
             System.out.println(e.getMessage());
         }

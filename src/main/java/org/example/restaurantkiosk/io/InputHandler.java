@@ -1,6 +1,6 @@
 package org.example.restaurantkiosk.io;
 
-import org.example.restaurantkiosk.Order;
+import org.example.restaurantkiosk.order.Order;
 import org.example.restaurantkiosk.restaurant.menu.MenuItems;
 
 public interface InputHandler {
