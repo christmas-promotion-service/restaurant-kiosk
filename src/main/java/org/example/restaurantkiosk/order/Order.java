@@ -1,4 +1,4 @@
-package org.example.restaurantkiosk;
+package org.example.restaurantkiosk.order;
 
 import org.example.restaurantkiosk.exception.CustomException;
 import org.example.restaurantkiosk.restaurant.menu.MenuItems;
@@ -45,4 +45,14 @@ public class Order {
                 .mapToInt(entry -> menuItems.getPrice(entry.getKey()) * entry.getValue())
                 .sum();
     }
+
+    // 증정품 제공 여부 확인
+    public boolean isGiveawayAddable() {
+        return calculateTotalPrice() >= 120000;
+    }
+
+    public boolean isDiscountBenefitEnable() {
+        return calculateTotalPrice() >= 10000;
+    }
+
 }

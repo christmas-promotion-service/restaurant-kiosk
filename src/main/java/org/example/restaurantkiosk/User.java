@@ -1,5 +1,7 @@
 package org.example.restaurantkiosk;
 
+import org.example.restaurantkiosk.order.Order;
+
 import java.util.Map;
 
 public class User {

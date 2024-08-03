@@ -1,6 +1,5 @@
-package org.example.restaurantkiosk.parser;
+package org.example.restaurantkiosk.order;
 
-import org.example.restaurantkiosk.Order;
 import org.example.restaurantkiosk.exception.CustomException;
 import org.example.restaurantkiosk.restaurant.menu.MenuItems;
 
