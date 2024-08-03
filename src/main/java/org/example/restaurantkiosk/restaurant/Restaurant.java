@@ -2,6 +2,7 @@ package org.example.restaurantkiosk.restaurant;
 
 import org.example.restaurantkiosk.User;
 import org.example.restaurantkiosk.config.ServiceConfig;
+import org.example.restaurantkiosk.discount.ChristmasDiscount;
 import org.example.restaurantkiosk.exception.CustomException;
 import org.example.restaurantkiosk.io.InputHandler;
 import org.example.restaurantkiosk.io.OutputHandler;
@@ -56,6 +57,12 @@ public class Restaurant implements RestaurantInitializable, RestaurantRunnable {
                 giveaway = Giveaway.CHAMPAGNE.toString();
             }
             outputHandler.showGiveawayComments(giveaway);
+
+            ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+            String christmasDiscountText = christmasDiscount.calculateFee(totalPrice, reservationDay);
+            outputHandler.showChristmasDiscountComments(christmasDiscountText);
+
+
 
         } catch (CustomException e) {
             System.out.println(e.getMessage());

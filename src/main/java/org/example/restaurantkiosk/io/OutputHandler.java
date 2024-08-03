@@ -9,4 +9,6 @@ public interface OutputHandler {
     void benifitPreviewComments(int day, Map<String, Integer> orderItems, int totalPriceBeforeDiscount);
 
     void showGiveawayComments(String giveaway);
+
+    void showChristmasDiscountComments(String christmasDiscountText);
 }

@@ -51,4 +51,8 @@ public class Order {
         return calculateTotalPrice() >= 120000;
     }
 
+    public boolean isDiscountBenefitEnable() {
+        return calculateTotalPrice() >= 10000;
+    }
+
 }

@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class ConsoleOutputHandler implements OutputHandler {
 
+    private NumberFormat numberFormat = new NumberFormat.getInstance();
+
     @Override
     public void askReservationDayComments() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.\n" +
@@ -27,7 +29,6 @@ public class ConsoleOutputHandler implements OutputHandler {
         System.out.println();
 
         System.out.println("<할인 전 총주문 금액>");
-        NumberFormat numberFormat = NumberFormat.getInstance();
         String formattedPrice = numberFormat.format(totalPriceBeforeDiscount);
         System.out.printf("%s원%n", formattedPrice);
 
@@ -37,8 +38,20 @@ public class ConsoleOutputHandler implements OutputHandler {
 
     @Override
     public void showGiveawayComments(String giveaway) {
+        System.out.println();
         System.out.println("<증정 메뉴>");
-        System.out.println(giveaway);
+        System.out.println(giveaway + " 1개");
+    }
+
+    @Override
+    public void showChristmasDiscountComments(String christmasDiscountText) {
+        if (christmasDiscountText.equals("없음")) {
+            System.out.println(christmasDiscountText);
+        }
+        else {
+            String formattedDiscount = numberFormat.format(christmasDiscountText);
+            System.out.printf("%s원%n", formattedDiscount);
+        }
     }
 
 
